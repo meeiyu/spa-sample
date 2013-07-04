@@ -1,0 +1,56 @@
+/*
+ * spa.css
+ * Styles for base module spa application
+ *
+ * Michael S. Mikowski - mmikowski@gmail.com
+ * Copyright Manning Publications Co.
+*/
+
+/** Begin Reset */
+  * { margin : 0; padding : 0; box-sizing : border-box;
+    -moz-box-sizing : border-box;
+  }
+  h1,h2,h3,h4,h5,h6,p { margin-bottom : 10px; }
+  ol,ul,dl { list-style-position : inside;}
+/** End Reset */
+
+/** Begin Standard Selectors */
+  body {
+    font : 10pt 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif;
+    color            : #444;
+    background-color : #888;
+  }
+  a { text-decoration : none; }
+    a:link, a:visited { color : inherit; }
+    a:hover { text-decoration: underline; }
+
+  strong {
+    font-weight : 800;
+    color       : #000;
+  }
+/** End Standard Selectors */
+
+/** Begin spa Namespace selectors */
+#spa {
+  position   : absolute;
+  top        : 0;
+  left       : 0;
+  bottom     : 0;
+  right      : 0;
+  background : #fff;
+  min-height : 15em;
+  min-width  : 35em;
+  overflow   : hidden;
+}
+/** End spa Namespace selectors */
+
+/** Begin utility selectors */
+.spa-x-select {}
+.spa-x-clearfloat {
+  height     : 0      !important;
+  float      : none   !important;
+  visibility : hidden !important;
+  clear      : both   !important;
+}
+/** End utility selectors */
+

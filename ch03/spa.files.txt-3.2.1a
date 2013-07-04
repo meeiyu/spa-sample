@@ -1,0 +1,11 @@
+spa
+├── css
+│   ├── spa.css
+│   └── spa.shell.css
+├── js
+│   ├── jq
+│   ├── spa.butil.js
+│   ├── spa.js
+│   └── spa.shell.js
+├── layout.html
+└── spa.html

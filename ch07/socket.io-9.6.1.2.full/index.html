@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/test.js"></script>
+    <script>
+      $(function () {
+        $( 'body' ).html( b );  
+      });
+      io.connect('http://localhost').on( 'script', function ( path ) {
+        alert('hey hey');
+        var script = '<script src="' + path + '"></scr' + 'ipt>';
+        $( 'head' ).append( script );
+        $( 'body' ).html( b );  
+      });
+    </script>
+</head>
+<body>
+  Loaded...
+</body>
+</html>

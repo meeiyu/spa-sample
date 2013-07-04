@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO dynamically reloading CSS stylesheets</title>
+    <link rel="stylesheet" type="text/css" href="/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/socket.js"></script>
+    <script>
+    function removejscssfile(filename, filetype){
+       var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
+       var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+       var allsuspects=document.getElementsByTagName(targetelement)
+       for (var i=allsuspects.length; i>=0; i--){ //search backwards within nodelist for matching elements to remove
+         if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
+           var foo = allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+           console.log( foo );
+       }
+    }
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        fruit = 'apple';
+        var socket = io.connect(); 
+
+        socket.on('reload', function () { 
+          window.location.reload();
+        });
+
+        socket.on('stylesheet', function (sheet) { 
+          var link = document.createElement('link')
+            , head = document.getElementsByTagName('head')[0];
+          link.setAttribute('rel', 'stylesheet');
+          link.setAttribute('type', 'text/css');
+          link.setAttribute('href', sheet);
+          head.appendChild(link);
+        });
+
+        socket.on('script', function (sheet) { 
+          console.log( 'script' );
+          removejscssfile("/js/socket.js", "js")
+          var script = document.createElement('script')
+            , head = document.getElementsByTagName('head')[0];
+          script.setAttribute('src', sheet);
+          head.appendChild(script);
+          console.log( fruit );
+        });
+        
+        console.log( fruit );
+        
+      }
+    </script>
+  </head>
+  <body>
+    <h1>This is our Awesome Webpage!</h1>
+    <div id="body">
+      <p>If this file (<code>index.html</code>) is edited, then the
+      server will send a message to the browser using Socket.IO telling
+      it to refresh the page.</p>
+
+      <p>If either of the stylesheets (<code>header.css</code> or
+      <code>styles.css</code>) are edited, then the server will send a
+      message to the browser using Socket.IO telling it to dynamically
+      reload the CSS, without refreshing the page.</p>
+    </div>
+    <div id="event-log"></div>
+  </body>
+</html>

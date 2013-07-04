@@ -1,0 +1,9 @@
+{ "name"    : "SPA",
+  "version" : "0.0.2",
+  "private" : true,
+  "dependencies" : {
+    "express"   : "2.4.4",
+    "JSV"       : "4.0.2",
+    "mongodb"   : "1.1.7"
+  }
+}
